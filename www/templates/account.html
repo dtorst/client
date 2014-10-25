@@ -1,0 +1,26 @@
+<ion-view title="Account Info">
+  <ion-content has-footer="true" padding="true">
+
+    <div class="list">
+
+      <div class="item">
+        <span>Name: {{ account.name }}</span>
+      </div>
+      <div class="item">
+        <span>E-mail: {{ account.email }}</span>
+      </div>
+      <div class="item">
+        <span>Phone: {{ account.phone }}</span>
+      </div>
+      <div class="item">
+        <span>Plate: {{ account.plate }}</span>
+      </div>
+      <div class="item">
+        <button class="button button-light" ng-click="logout()">
+        Logout
+        </button>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view title="Sign Up">
+  <ion-content class="padding">
+    <form name="registrationForm">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">E-mail</span>
+          <input type="email" placeholder="user@email.com" ng-model="reg.email" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Password" ng-model="reg.password" required>
+        </label>
+        <label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Name</span>
+            <input type="text" placeholder="John Doe" ng-model="reg.name">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Phone</span>
+            <input type="text" placeholder="800-555-1234" ng-model="reg.phone" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Plate</span>
+            <input type="text" placeholder="ABC 123" ng-model="plate.license" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">State</span>
+            <input type="text" placeholder="CA" ng-model="plate.state" required>
+          </label>
+          <label>
+      </div>
+      <button class="button button-full button-positive" ng-disabled="registrationForm.$invalid" ng-click="registerUser()">
+        Register
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

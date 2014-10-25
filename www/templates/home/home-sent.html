@@ -1,0 +1,21 @@
+<ion-view title='{{ sentMessages.length }} Sent {{sentMessages.length != 1 ? "Messages" : "Message"}}'>
+  <ion-content has-footer="true" padding="true">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list">
+      <div class="item" ng-repeat="reminder in sentMessages">
+        {{reminder.sentMessage}}<br>Sent: {{ reminder.time | date:'fullDate'}} at {{reminder.time | date:'shortTime'}}
+        <button class="button button-assertive button-small" ng-click="deleteReminder(reminder)">
+          <i class="icon ion-trash-a"></i>
+        </button>
+      </div>
+
+      <div class="item" ng-show="sentMessages.length == 0">
+        No reminders yet. Create a new one!
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-view title="{{ receivedMessages.length }} Received {{receivedMessages.length != 1 ? 'Messages': 'Message'}}">
+  <ion-content has-footer="true" padding="true">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list">
+      <div class="item" ng-repeat="reminder in receivedMessages">
+        {{reminder.sentMessage}}<br>Received: {{ reminder.time | date:'fullDate'}} at {{reminder.time | date:'shortTime'}}
+      </div>
+
+      <div class="item" ng-show="receivedMessages.length == 0">
+        No reminders yet.
+      </div>
+
+    </div>
+
+    <!--
+<button class="button button-icon icon ion-star"><span class="badge badge-assertive">{{ receivedMessages.length }}</span></button>
+-->
+  </ion-content>
+</ion-view>
