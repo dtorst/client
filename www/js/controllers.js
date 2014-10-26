@@ -84,21 +84,26 @@ angular.module('goodCarma.controllers', [])
   };
 }])
 
-.controller('HomeCtrl', ['$scope', '$rootScope', 'SessionFactory', 'ReminderFactory', '$ionicModal', '$timeout',
-  function($scope, $rootScope, SessionFactory, ReminderFactory, $ionicModal, $timeout) {
+.controller('MainCtrl', ['$scope', '$rootScope', 'SessionFactory', 'SendFactory', 'ReceivedFactory', '$ionicModal', '$timeout',
+  function($scope, $rootScope, SessionFactory, SendFactory, ReceivedFactory, $ionicModal, $timeout) {
 
-    $scope.badgeNumber = '5';
-    $scope.sentMessages = [];
+    $scope.receivedMessages = '';
+    $scope.karmaPoints = '';
 
-    // Trigger Load reminders
-    $timeout(function() {
-      $rootScope.$broadcast('load-reminders');
-    }, 9); // Race Condition
 
-    $scope.doRefresh = function() {
-      $rootScope.$broadcast('load-reminders');
-      $scope.$broadcast('scroll.refreshComplete');
-    }
+    var user = SessionFactory.getSession();
+      ReceivedFactory.getAll(user.plate).success(function(data) {
+        $scope.receivedMessages = data.receivedMessages.length;
+      }).error(function(data) {
+        console.log("there was an error.");
+      });
+      SendFactory.getAll(user._id).success(function(data) {
+        $scope.karmaPoints = data.sentMessages.length;
+      }).error(function(data) {
+        console.log("there was an error.");
+      })
+
+
 
     $rootScope.createNew = function() {
       $scope.modal.show();
@@ -111,10 +116,30 @@ angular.module('goodCarma.controllers', [])
       focusFirstInput: true
     });
 
+  }
+ ])
+
+.controller('SentCtrl', ['$scope', '$rootScope', 'SessionFactory', 'SendFactory', 'ReceivedFactory', '$ionicModal', '$timeout',
+  function($scope, $rootScope, SessionFactory, SendFactory, ReceivedFactory, $ionicModal, $timeout) {
+
+    $scope.sentMessages = [];
+
+    // Trigger Load reminders
+    $timeout(function() {
+      $rootScope.$broadcast('load-reminders');
+    }, 9); // Race Condition
+
+    $scope.doRefresh = function() {
+      $rootScope.$broadcast('load-reminders');
+      $scope.$broadcast('scroll.refreshComplete');
+    }
+
+
     $rootScope.$on('load-reminders', function(event) {
       $rootScope.showLoading('Fetching Reminders..');
       var user = SessionFactory.getSession();
-      ReminderFactory.getAll(user._id).success(function(data) {
+
+      SendFactory.getAll(user._id).success(function(data) {
         $scope.sentMessages = data.sentMessages;
         $rootScope.hideLoading();
       }).error(function(data) {
@@ -126,7 +151,7 @@ angular.module('goodCarma.controllers', [])
     $scope.deleteReminder = function(reminder) {
       $rootScope.showLoading('Deleting Reminder..');
 
-      ReminderFactory.delete(reminder.userId, reminder._id)
+      SendFactory.delete(reminder.userId, reminder._id)
         .success(function(data) {
           console.log(data);
           $rootScope.hideLoading();
@@ -170,8 +195,8 @@ function($scope, $timeout, $rootScope, $filter, ReceivedFactory, SessionFactory)
   }
 ])
 
-.controller('NewReminderCtrl', ['$scope', '$ionicPopup', '$filter', '$rootScope', 'ReminderFactory', 'SessionFactory',
-  function($scope, $ionicPopup, $filter, $rootScope, ReminderFactory, SessionFactory) {
+.controller('SendCtrl', ['$scope', '$ionicPopup', '$filter', '$rootScope', 'SendFactory', 'SessionFactory',
+  function($scope, $ionicPopup, $filter, $rootScope, SendFactory, SessionFactory) {
 
     /** http://codepen.io/ooystein/pen/edjyH **/
     $scope.reminder = {
@@ -202,7 +227,7 @@ function($scope, $timeout, $rootScope, $filter, ReceivedFactory, SessionFactory)
       delete _r.formattedDate;
       delete _r.fullDate;
       */
-      ReminderFactory.create(user._id, _r).success(function(data) {
+      SendFactory.create(user._id, _r).success(function(data) {
         $rootScope.hideLoading();
         $scope.modal.hide();
         $rootScope.$broadcast('load-reminders');

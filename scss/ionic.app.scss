@@ -18,9 +18,103 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+$badge-font-size:                 18px !default;
+$badge-line-height:               26px !default;
+$badge-border-radius:             20px !default;
 
-$assertive:                       #ff0000 !default;
-$font-family-sans-serif:          "Avenir", sans-serif !default;
+$bar-height:                      50px !default;
+$bar-title-font-size:             17px !default;
+$bar-padding-portrait:            5px !default;
+
+$button-assertive-text:			  #f6ffe0 !default;
+$button-positive-text:            #f6ffe0 !default;
+$button-color:                    #000 !default;
+$positive: #2b6f99 !default;
+$assertive:                       #eb6c6c !default;
+
+
+$font-family-sans-serif:          "Avenir Next", sans-serif !default;
+
+.main-page {
+	background-image:url(../img/background-image.jpg);
+	background-size: 100% 100%;
+	background-repeat:no-repeat;	
+}
+
+.main-container {
+	width:38%;
+	height:100%;
+	margin: 0 auto;
+}
+
+.nav-controls-main {
+	position:relative;
+	top:0;
+	bottom:0;
+	height:100%;
+	width:130px;
+	margin:auto auto;
+}
+
+.control-button {
+	position:relative;
+	margin-left:25px;
+	padding:0px;
+	width:100px;
+	margin: 40px auto;
+}
+
+.icon-custom {
+	position:relative;
+	top:18px;
+	left:35px;
+	width:100%;
+	margin:0 auto;
+	z-index:20;
+	color:#f6ffe0;
+	font-size:50px;
+}
+
+.icon-custom-a {
+	top:4px;
+	left:22px;
+	font-size:80px;
+}
+
+.badge-custom {
+	z-index:1000 !important;
+	postion:absolute !important;
+	top:70px !important;
+	margin-left:65px !important;
+	height:30px;
+	width:30px;
+	padding: 8px 8px;
+}
+
+.custom-icon {
+  font-size: 124px !important;
+  color : #f6ffe0 !important;
+}
+
+.circle-small {
+	z-index:20;
+	position:relative;
+	color: #f6ffe0;
+	border-radius: 50%;
+	background-color:transparent;
+	width: 90px;
+	height: 90px;
+	border: #f6ffe0 solid 3px !important;
+}
+
+.circle-large {
+	color: #f6ffe0;
+background-color:transparent;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	border: #f6ffe0 solid 4px !important;
+}
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

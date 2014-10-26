@@ -51,23 +51,23 @@ angular.module('goodCarma.services', [])
   }
 ])
 
-.factory('ReminderFactory', ['$http',
+.factory('SendFactory', ['$http',
   function($http) {
-    var _remFactory = {};
+    var _sendFactory = {};
 
-    _remFactory.getAll = function(userId) {
+    _sendFactory.getAll = function(userId) {
       var t = Date.now();
       return $http.get(baseUrl + '/api/v1/sent/' + userId+'?_t='+t);
     }
 
-    _remFactory.create = function(userId, reminder) {
-      return $http.post(baseUrl + '/api/v1/send/' + userId + '/create', reminder);
+    _sendFactory.create = function(userId, msg) {
+      return $http.post(baseUrl + '/api/v1/send/' + userId + '/create', msg);
     }
 
-    _remFactory.delete = function(userId, reminderId) {
-      return $http.delete(baseUrl + '/api/v1/sent/' + userId + '/' + reminderId);
+    _sendFactory.delete = function(userId, msgId) {
+      return $http.delete(baseUrl + '/api/v1/sent/' + userId + '/' + msgId);
     }
-    return _remFactory;
+    return _sendFactory;
   }
 ])
 

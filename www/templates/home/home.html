@@ -1,28 +1,37 @@
 <ion-view title="Good Carma">
-  <ion-content has-footer="true" padding="true">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-ios7-gear" ng-show="authktd" ng-click="account()">
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios7-help-outline" ng-click="about()"></button>
+  </ion-nav-buttons>
 
-<span>hi.</span>
+  <ion-content has-header="true" padding="false" scroll="false" class="main-page">
 
-<button class="button button-icon icon ion-ios7-paperplane" ng-click="received()"></button>
+<div class="main-container">
+  <ul class="nav-controls-main">
+<li class="control-button" ng-click="received()">
+  <div class="circle-small">
+    <i class="icon ion-alert icon-custom"></i>
+        <div class="badge badge-assertive badge-custom">{{ receivedMessages }}</div>
+  </div>
+</li>
 
-  <!-- Received Tab --
-  <ion-tab title="Received" badge="3" badge-style='badge-assertive' icon-on="ion-ios7-paperplane" icon-off="ion-ios7-paperplane-outline" href="#/home/received">
-    <ion-nav-view name="home-received"></ion-nav-view>
-  </ion-tab>
+<li>
+  <button class="circle-large" ng-click="sent()">
+    <span style="font-size:80px" "style:margin-top:3px;">{{ karmaPoints }}</span>
+  </button>
+</li>
 
-  <!-- Sent Tab --
-  <ion-tab title="Sent" icon-on="ion-ios7-compose" icon-off="ion-ios7-compose-outline" href="#/home/sent">
-    <ion-nav-view name="home-sent"></ion-nav-view>
-  </ion-tab>
+<li class="control-button" ng-click="createNew()">
+  <div class="circle-small">
+    <i class="icon ion-ios7-plus-empty icon-custom icon-custom-a"></i>
+  </div>
+</li>
 
-
-  <!-- Send New Tab --
-  <ion-tab title="Send" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline" ng-click="createNew()">
-</ion-tab>
--->
-
-</ion-tabs>
-
+  </ul>
+</div><!-- /container -->
   </ion-content>
 
 </ion-view>

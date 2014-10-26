@@ -38,8 +38,16 @@ angular.module('goodCarma', ['ionic', 'goodCarma.controllers', 'goodCarma.servic
     $location.path('/account');
   }
 
+  $rootScope.about = function() {
+    $location.path('/about');
+  }
+
   $rootScope.received = function() {
     $location.path('/received');
+  }
+
+  $rootScope.sent = function() {
+    $location.path('/sent');
   }
 
   $rootScope.logout = function() {
@@ -95,28 +103,13 @@ angular.module('goodCarma', ['ionic', 'goodCarma.controllers', 'goodCarma.servic
     url: "/home",
 //    abstract: true,
     templateUrl: "templates/home/home.html",
-    controller: 'HomeCtrl'
-  })
-/*
-  .state('home.sent', {
-    url: '/sent',
-    views: {
-      'home-sent': {
-        templateUrl: 'templates/home/home-sent.html',
-        controller: 'HomeCtrl'
-      }
-    }
+    controller: 'MainCtrl'
   })
 
-  .state('home.received', {
-    url: '/received',
-    views: {
-      'home-received': {
-        templateUrl: 'templates/home/home-received.html',
-        controller: 'ReceivedCtrl'
-      }
-    }
-  }) */
+  .state('about', {
+    url: '/about',
+    templateUrl: 'templates/about.html'
+  })
 
   .state('received', {
     url: '/received',
@@ -124,6 +117,11 @@ angular.module('goodCarma', ['ionic', 'goodCarma.controllers', 'goodCarma.servic
     controller: 'ReceivedCtrl'
   })
 
+  .state('sent', {
+    url: '/sent',
+    templateUrl: 'templates/home/home-sent.html',
+    controller: 'SentCtrl'
+  })
 
   .state('account', {
     url: '/account',
